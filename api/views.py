@@ -31,11 +31,11 @@ def api_home(request, *args, **kwargs):
     instance = Product.objects.all().order_by("?").first()
     data = {}
     if instance:
-       """ data['title'] = model_data.title
+       """ First way of changing data to naitive python : data['title'] = model_data.title
         data['content'] = model_data.content
         data['price'] = model_data.price
         """
-         #data = model_to_dict(instance, fields=['id', 'title','price', 'sale_price'])
+         #Here is the data = model_to_dict(instance, fields=['id', 'title','price', 'sale_price'])
        data = ProductSerializer(instance).data
 
         # model instance (model_Data)
@@ -59,4 +59,5 @@ Django Model Instance as API Response
 "Next topic : DJango Model instance to dictionary"
 "Next topic : Rest Framwwork View and response"
 "Next topic : Django Rest Framework Modle Serilizers"
+
 "Next topic : Ingest Data with Django Rest Framework views"
