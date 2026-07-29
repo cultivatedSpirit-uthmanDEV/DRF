@@ -8,7 +8,7 @@ from rest_framework.decorators import api_view
 from products.serilizers import ProductSerializer
 # Create your views here.
 
-@api_view(["GET"])
+@api_view(["POST"])
 def api_home(request, *args, **kwargs):
     """"
         # request --> HttpRequest --> Django
@@ -28,15 +28,20 @@ def api_home(request, *args, **kwargs):
     """
 
 
-    instance = Product.objects.all().order_by("?").first()
+    """instance = Product.objects.all().order_by("?").first()
     data = {}
-    if instance:
-       """ First way of changing data to naitive python : data['title'] = model_data.title
+    if instance:"""
+    """ First way of changing data to naitive python : data['title'] = model_data.title
         data['content'] = model_data.content
         data['price'] = model_data.price
         """
          #Here is the data = model_to_dict(instance, fields=['id', 'title','price', 'sale_price'])
-       data = ProductSerializer(instance).data
+    serializer = ProductSerializer(data=request.data)
+    if serializer.is_valid():
+       # instance = serializer.save()
+        print(serializer.data)
+        data = serializer.data
+    return Response(data)
 
         # model instance (model_Data)
         # turn a python dict
@@ -58,6 +63,6 @@ Django Model Instance as API Response
 """
 "Next topic : DJango Model instance to dictionary"
 "Next topic : Rest Framwwork View and response"
-"Next topic : Django Rest Framework Modle Serilizers"
-
+"Next topic : Django Rest Framework Model Serilizers"
 "Next topic : Ingest Data with Django Rest Framework views"
+"Next topic : Django Rest Framework Generics RetrieveAPIView"
