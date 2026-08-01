@@ -5,7 +5,7 @@ from products.models import Product
 from django.forms.models import model_to_dict
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from products.serilizers import ProductSerializer
+from products.serializers import ProductSerializer
 # Create your views here.
 
 @api_view(["POST"])
@@ -51,18 +51,4 @@ def api_home(request, *args, **kwargs):
 
 
 
-"""
-Welcome to the Django Rest Framework
-Tools we are using
-Setup Python Virtual Environment, Install Req, and Start Django
-Creating a Python API Client
-Run Django Project
-Create your first API View
-Echo GET Data
-Django Model Instance as API Response
-"""
-"Next topic : DJango Model instance to dictionary"
-"Next topic : Rest Framwwork View and response"
-"Next topic : Django Rest Framework Model Serilizers"
-"Next topic : Ingest Data with Django Rest Framework views"
-"Next topic : Django Rest Framework Generics RetrieveAPIView"
+
