@@ -4,13 +4,14 @@ from .models import Product
 from products.serializers import ProductSerializer
 from rest_framework.response import Response
 from django.shortcuts import get_list_or_404
+from .permission import IsStaffEditorPermission
 
 
 class ProductListCreateAPIView(generics.ListCreateAPIView):
         queryset = Product.objects.all()
         serializer_class = ProductSerializer
         authentication_classes = [authentication.SessionAuthentication]
-        permission_classes = [permissions.DjangoModelPermissions]
+        permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
         def perform_create(self, serializer):
             #serializer.save(user= self.request.user)
             #print(serializer)
@@ -40,6 +41,7 @@ product_list_view = ProductDetailAPIViews
 class ProductUpdateAPIViews(generics.UpdateAPIView):
         queryset = Product.objects.all()
         serializer_class = ProductSerializer
+        permission_classes = [permissions.DjangoModelPermissions]
         lookup_field = "pk"
 
         def perform_update(self, serializer):
