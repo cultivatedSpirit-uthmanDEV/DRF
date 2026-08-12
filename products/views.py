@@ -18,6 +18,8 @@ class ProductListCreateAPIView(StaffEditorPermissionMixins,
             #serializer.save(user= self.request.user)
             #print(serializer)
             #serializer.save()
+            Email = serializer.validated_data.pop('Email') 
+            print(Email)
             title = serializer.validated_data.get('title')
             content = serializer.validated_data.get('content')
             #or None
