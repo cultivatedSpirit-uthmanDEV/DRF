@@ -7,6 +7,7 @@ from django.shortcuts import get_list_or_404
 from api.permission import IsStaffEditorPermission
 from api.mixins import StaffEditorPermissionMixins
 
+
 class ProductListCreateAPIView(StaffEditorPermissionMixins,
         generics.ListCreateAPIView):
         queryset = Product.objects.all()
@@ -25,20 +26,21 @@ class ProductListCreateAPIView(StaffEditorPermissionMixins,
             serializer.save(content=content)
 
 
-product_list_create_view = ProductListCreateAPIView
+product_list_create_view = ProductListCreateAPIView.as_view()
+
 
 class ProductDetailAPIViews(StaffEditorPermissionMixins,
         generics.RetrieveAPIView):
         queryset = Product.objects.all()
         serializer_class = ProductSerializer
         # lookup_field = 'pk'
-product_details_view = ProductDetailAPIViews
+product_details_view = ProductDetailAPIViews.as_view()
 
 class ProductListAPIViews(StaffEditorPermissionMixins,
         generics.ListAPIView):
         queryset = Product.objects.all()
         serializer_class = ProductSerializer
-product_list_view = ProductDetailAPIViews
+product_list_view = ProductListAPIViews.as_view()
 
 
 class ProductUpdateAPIViews(StaffEditorPermissionMixins,
