@@ -1,6 +1,6 @@
 from rest_framework import permissions
 
-
+# custom_permission
 class IsStaffEditorPermission(permissions.DjangoModelPermissions):
     def has_permission(self, request, view):
         perms_map = {
